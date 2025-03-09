@@ -1,0 +1,48 @@
+body {
+  overflow: scroll;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.cell {
+  border: 0.5px solid black;
+  border-radius: 0;
+}
+
+.cell:focus {
+  outline: none;
+  border: 0.5px solid black;
+  border-radius: 0;
+}
+
+.index {
+  min-height: 25px;
+  max-height: 25px;
+  min-width: 50px;
+  max-width: 50px;
+  background-color: rgb(229, 255, 255);
+  display: inline-block;
+  text-align: center;
+  border: 0.5px solid black;
+}
+
+.headercell {
+  min-height: 25px;
+  max-height: 25px;
+  min-width: 50px;
+  max-width: 50px;
+  background-color: rgb(229, 255, 255);
+  display: inline-block;
+  text-align: center;
+  border: 0.5px solid black;
+  padding: 1px 0;
+}
+
+.rowcell {
+  min-width: 100px;
+  max-width: 100px;
+  padding: 1px;
+}
