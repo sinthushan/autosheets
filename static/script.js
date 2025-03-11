@@ -55,7 +55,53 @@ document.querySelectorAll(".rowcell").forEach((element) => {
           parseInt(current_row) + 1
         }'][data-column='${current_col}']`
       );
-      nextcell.focus();
+      if (nextcell != null) {
+        nextcell.focus();
+      } else {
+        this.focus;
+      }
+    }
+    if (e.code == "ArrowUp") {
+      current_row = this.dataset.row;
+      current_col = this.dataset.column;
+      nextcell = document.querySelector(
+        `[data-row='${
+          parseInt(current_row) - 1
+        }'][data-column='${current_col}']`
+      );
+      if (nextcell != null) {
+        nextcell.focus();
+      } else {
+        this.focus;
+      }
+    }
+    if (e.code == "ArrowRight") {
+      current_row = this.dataset.row;
+      current_col = this.dataset.column;
+      nextcell = document.querySelector(
+        `[data-column='${
+          parseInt(current_col) + 1
+        }'][data-row='${current_row}']`
+      );
+      if (nextcell != null) {
+        nextcell.focus();
+      } else {
+        this.focus;
+      }
+    }
+    if (e.code == "ArrowLeft") {
+      current_row = this.dataset.row;
+      current_col = this.dataset.column;
+      nextcell = document.querySelector(
+        `[data-column='${
+          parseInt(current_col) - 1
+        }'][data-row='${current_row}']`
+      );
+      if (nextcell != null) {
+        nextcell.focus();
+      } else {
+        this.focus;
+      }
     }
     if ((this.value[0] == "=") & !eval_keys.includes(e.code)) {
       this.classList.add("formulaInput");
@@ -67,7 +113,11 @@ document.querySelectorAll(".rowcell").forEach((element) => {
   element.addEventListener("blur", function (e) {
     if (this.value[0] == "=") {
       var sanitized_formula = sanitize_formula(this.value);
-      this.value = eval(sanitized_formula);
+      answer = eval(sanitized_formula);
+      if (answer != undefined) {
+        this.dataset.formula = this.value;
+        this.value = answer;
+      }
     }
   });
 });
@@ -76,9 +126,12 @@ document.querySelectorAll(".rowcell").forEach((element) => {
   element.addEventListener("focus", function () {
     let formulaInput = document.querySelector(".formulaInput");
     if (formulaInput != null) {
+      console.log("here");
       formulaInput.classList.remove("formulaInput");
       formulaInput.value = formulaInput.value + this.id;
       formulaInput.focus();
+    } else if ("formula" in this.dataset && this.dataset.formula != "") {
+      this.value = this.dataset.formula;
     }
   });
 });
