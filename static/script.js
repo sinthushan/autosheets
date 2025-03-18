@@ -35,7 +35,7 @@ for (var i = 1; i < Y; i++) {
 
 document.querySelectorAll(".rowcell").forEach((element) => {
   element.addEventListener("keyup", function (e) {
-    eval_keys = ["Enter", "Tab", "ArrowDown"];
+    eval_keys = ["Enter", "Tab"];
     if (e.code == "Enter") {
       current_row = this.dataset.row;
       current_col = this.dataset.column;
